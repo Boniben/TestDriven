@@ -23,4 +23,8 @@ public class Affectation {
 		return projet;
 	}
 
+	public Intervenant getIntervenant() {
+		return intervenant;
+	}
+
 }

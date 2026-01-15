@@ -1,7 +1,9 @@
 package model;
 
 import java.time.LocalDate;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Projet {
 	private int id;
@@ -52,4 +54,18 @@ public class Projet {
 			return 0;
 		}
 	}
+
+	public int getNbIntervenantsParProjet() {
+		if (this.affectations == null) {
+			return 0;
+		}
+		Set<Intervenant> intervenantsUniques = new HashSet<>();
+
+		for (Affectation a : affectations) {
+			intervenantsUniques.add(a.getIntervenant());
+		}
+
+		return intervenantsUniques.size();
+	}
+
 }

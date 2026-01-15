@@ -17,11 +17,13 @@ class ProjetTest {
 	private Projet P2;
 	private Intervenant i1;
 	private Intervenant i2;
+	private Intervenant i3;
 	private Affectation a1;
 	private Affectation a2;
 	private Affectation a3;
 	private Affectation a4;
 	private Affectation a5;
+	private Affectation a6;
 
 	@BeforeEach
 	void setUp() {
@@ -32,12 +34,14 @@ class ProjetTest {
 				LocalDate.of(2024, 2, 5));
 		i1 = new Intervenant(1, "Doe", "John");
 		i2 = new Intervenant(2, "Smith", "Jane");
+		i3 = new Intervenant(3, "Brown", "Charlie");
 
 		a1 = new Affectation(i1, P1, 50, 1, 100);
 		a2 = new Affectation(i2, P2, 50, 3, 200);
 		a3 = new Affectation(i2, P1, 50, 10, 2000);
 		a4 = new Affectation(i1, P2, 50, 15, 1000);
 		a5 = new Affectation(i1, P1, 50, 20, 500);
+		a6 = new Affectation(i3, P2, 50, 5, 300);
 
 		P1.addAffectation(a1);// a1 = i1-P1
 		i1.addAffectation(a1);
@@ -49,6 +53,8 @@ class ProjetTest {
 		i1.addAffectation(a4);
 		P1.addAffectation(a5);// a5 = i1-P1 (doublon)
 		i1.addAffectation(a5);
+		P2.addAffectation(a6);// a6 = i3-P2
+		i3.addAffectation(a6);
 
 	}
 
@@ -62,10 +68,17 @@ class ProjetTest {
 		// nombre de projets uniques par intervenant
 		assertEquals(2, i1.getNbprojetsUnique());
 		assertEquals(2, i2.getNbprojetsUnique());
+		assertEquals(1, i3.getNbprojetsUnique());
 
 		// heure passé en minute par projet pour 1 intervenant
 		assertEquals(600, i1.getNbtempParProjet(P1));
 		assertFalse(i1.getNbtempParProjet(P1) == 500);
+		assertEquals(300, i3.getNbtempParProjet(P2));
+
+		// nombre d'intervenant par projet
+		assertEquals(2, P1.getNbIntervenantsParProjet());
+		assertEquals(3, P2.getNbIntervenantsParProjet());
+		assertFalse(P2.getNbIntervenantsParProjet() == 2);
 	}
 
 }
