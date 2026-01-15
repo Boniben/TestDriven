@@ -81,4 +81,19 @@ public class Projet {
 		return totalTemps;
 	}
 
+	public int getNbTempTotalParProjetPourIntervenant(Intervenant intervenant) {
+		if (this.affectations == null) {
+			return 0;
+		}
+		int totalTemps = 0;
+
+		for (Affectation a : affectations) {
+			if (a.getIntervenant().equals(intervenant)) {
+				totalTemps += a.getTempsPasse();
+			}
+		}
+
+		return totalTemps;
+	}
+
 }

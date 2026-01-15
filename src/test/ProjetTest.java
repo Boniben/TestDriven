@@ -85,6 +85,10 @@ class ProjetTest {
 		assertEquals(1500, P2.getNbtempTotalParProjet());
 		assertFalse(P2.getNbtempTotalParProjet() == 1600);
 
+		// nombre de temps passé pour 1 intervenant par projet
+		assertEquals(600, P1.getNbTempTotalParProjetPourIntervenant(i1));
+		assertFalse(P1.getNbTempTotalParProjetPourIntervenant(i1) == 500);
+
 	}
 
 }
