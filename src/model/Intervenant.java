@@ -4,7 +4,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class Intervenant {
+public abstract class Intervenant {
 
 	private int id;
 	private String nom;
@@ -12,6 +12,9 @@ public class Intervenant {
 	private Categorie categorie;
 	private List<Projet> projets;
 	private List<Affectation> affectations;
+
+	public Intervenant() {
+	}
 
 	public Intervenant(int id, String nom, String prenom) {
 		this.id = id;
